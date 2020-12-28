@@ -1,8 +1,8 @@
 import scrapy
 
 
-class QuotesSpider(scrapy.Spider):
-    name = "quotes"
+class RecipesSpider(scrapy.Spider):
+    name = "recipes"
 
     start_urls = [
         'https://sprinkledfood.com/category/vegan/' 
@@ -17,7 +17,7 @@ class QuotesSpider(scrapy.Spider):
                 'title': title,
                 'preparation': prep
             }
-        #to find the a href tag for next page and to write smth like a.name class::attr(href)
+        
         next_page = response.css('.archive-pagination-next::attr(href)').get()
         if next_page is not None:
              yield response.follow(next_page, callback=self.parse)
